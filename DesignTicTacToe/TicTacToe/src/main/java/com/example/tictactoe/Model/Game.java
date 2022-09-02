@@ -100,10 +100,10 @@ public class Game {
 
     public void makeMove() {
         Move move = players.get(lastIndexPlayer).makeMove(board);
+
         if(move != null) {
             moves.add(move);
             this.board.updateMove(move);
-            System.out.println(" Did anyone won??  "+ checkIfWon());
             if (!checkIfWon()) {
                 lastIndexPlayer = (lastIndexPlayer + 1) % players.size();
             }
@@ -115,11 +115,11 @@ public class Game {
     }
 
     public boolean checkIfWon() {
-        boolean inWon = false;
-        System.out.println("winning strategies" + winningStrategies.size());
+
+
         for(WinningStrategy winningStrategy : winningStrategies ) {
             if(winningStrategy.checkIfWon(players.get(lastIndexPlayer),this.board, moves.get(moves.size()-1))) {
-                System.out.println("Player : "+players.get(lastIndexPlayer).getName() + " won the game!!" );
+
                 this.gameStatus = GameStatus.WIN;
                 this.winner = players.get(lastIndexPlayer);
                 return true;

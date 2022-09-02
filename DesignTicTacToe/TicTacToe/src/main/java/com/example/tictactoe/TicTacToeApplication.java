@@ -19,7 +19,9 @@ public class TicTacToeApplication {
 
         int dimension = 3;
         Player p1 = new HumanPlayer(new Symbol('X'));
+        p1.setName("Aman");
         Player p2 = new BotPlayer(new Symbol('O'), BotPlayingDifficulty.EASY);
+        p2.setName("I have no name");
         List<Player> players = new ArrayList<>();
         players.add(p1);
         players.add(p2);
@@ -42,11 +44,16 @@ public class TicTacToeApplication {
         }
 
         if (gameController.getGameStatus(game).equals(GameStatus.WIN)) {
+            System.out.println("Final board");
+            gameController.showBoard(game);
             System.out.println("WINNER WINNER CHICKEN DINNER");
+            System.out.println(game.getWinner().getName() + " won the game");
             gameController.getWinner(game);
         }
 
         if (gameController.getGameStatus(game).equals(GameStatus.DRAW)) {
+            System.out.println("Final board");
+            gameController.showBoard(game);
             System.out.println("UH OH. Try AGain. No one won");
             gameController.getWinner(game);
         }

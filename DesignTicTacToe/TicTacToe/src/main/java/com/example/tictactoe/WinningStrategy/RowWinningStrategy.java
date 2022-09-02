@@ -23,8 +23,6 @@ public class RowWinningStrategy implements WinningStrategy {
         int freq = symbolVsCountPerRow.get(move.getCell().getRow()).get(player.getSymbol());
         symbolVsCountPerRow.get( move.getCell().getRow()).put(player.getSymbol(), freq + 1);
 
-        System.out.println("row number :" + move.getCell().getRow() + " player : " + player.getSymbol() + " freq :" +
-                symbolVsCountPerRow.get(move.getCell().getRow()).get(player.getSymbol()));
         if(symbolVsCountPerRow.get(move.getCell().getRow()).get(player.getSymbol())  == board.getDimension()) {
             return true;
         }
