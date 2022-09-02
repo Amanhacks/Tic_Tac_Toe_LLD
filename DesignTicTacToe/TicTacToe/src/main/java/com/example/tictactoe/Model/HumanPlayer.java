@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ public class HumanPlayer extends Player {
     Symbol symbol;
 
 
-    HumanPlayer(Symbol symbol) {
+    public HumanPlayer(Symbol symbol) {
         super(PlayerType.HUMAN,symbol);
         this.symbol = symbol;
     }
@@ -17,9 +17,12 @@ public class HumanPlayer extends Player {
         System.out.println("Select the row for your move  : ");
         int row = scanner.nextInt();
 
-        System.out.println("Select the row for your move  : ");
+        System.out.println("Select the column for your move  : ");
         int col = scanner.nextInt();
-
-        return new Move(this,new Cell(row,col,this.symbol));
+        Cell cell = new Cell();
+        cell.setRow(row);
+        cell.setCol(col);
+        cell.setSymbol(this.symbol);
+        return new Move(this,cell);
     }
 }

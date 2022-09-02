@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 public class Symbol {
     public char getSymbolChar() {
@@ -10,7 +10,7 @@ public class Symbol {
     }
 
     private char symbolChar;
-    Symbol(char symbolChar) {
+    public Symbol(char symbolChar) {
         this.symbolChar = symbolChar;
     }
 }

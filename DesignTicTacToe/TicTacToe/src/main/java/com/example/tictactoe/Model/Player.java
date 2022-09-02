@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 public abstract class Player {
     private String Name;

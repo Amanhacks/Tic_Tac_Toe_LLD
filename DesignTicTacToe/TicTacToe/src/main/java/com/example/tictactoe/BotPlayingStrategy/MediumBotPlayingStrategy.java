@@ -1,8 +1,8 @@
 package com.example.tictactoe.BotPlayingStrategy;
 
-import com.example.tictactoe.Module.Board;
-import com.example.tictactoe.Module.Move;
-import com.example.tictactoe.Module.Player;
+import com.example.tictactoe.Model.Board;
+import com.example.tictactoe.Model.Move;
+import com.example.tictactoe.Model.Player;
 
 public class MediumBotPlayingStrategy implements BotPlayingStrategy{
     @Override

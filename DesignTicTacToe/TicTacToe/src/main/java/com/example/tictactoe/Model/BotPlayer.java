@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 import com.example.tictactoe.BotPlayingStrategy.BotPlayingFactory;
 import com.example.tictactoe.BotPlayingStrategy.BotPlayingStrategy;
@@ -11,7 +11,7 @@ public class BotPlayer extends Player{
 
 
 
-    BotPlayer(Symbol symbol) {
+    public BotPlayer(Symbol symbol,BotPlayingDifficulty botPlayingDifficulty) {
         super(PlayerType.BOT,symbol);
         this.symbol = symbol;
         botPlayingStrategy = new BotPlayingFactory().getBotPlayingStrategy(botPlayingDifficulty);

@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 public class Cell {
     private int row;
@@ -6,10 +6,8 @@ public class Cell {
     private Symbol symbol;
 
 
-    public Cell(int row,int col,Symbol symbol) {
-        this.row = row;
-        this.col = col;
-        this.symbol = symbol;
+    public Cell() {
+
     }
 
     public int getRow() {

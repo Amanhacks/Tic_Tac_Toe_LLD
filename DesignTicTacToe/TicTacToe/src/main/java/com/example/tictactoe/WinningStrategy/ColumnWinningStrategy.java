@@ -1,9 +1,9 @@
 package com.example.tictactoe.WinningStrategy;
 
-import com.example.tictactoe.Module.Board;
-import com.example.tictactoe.Module.Move;
-import com.example.tictactoe.Module.Player;
-import com.example.tictactoe.Module.Symbol;
+import com.example.tictactoe.Model.Board;
+import com.example.tictactoe.Model.Move;
+import com.example.tictactoe.Model.Player;
+import com.example.tictactoe.Model.Symbol;
 
 import java.util.ArrayList;
 import java.util.HashMap;

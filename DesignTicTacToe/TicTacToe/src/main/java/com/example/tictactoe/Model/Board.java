@@ -1,4 +1,4 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +20,18 @@ public class Board {
     }
 
     public void setDimension(int dimension) {
-        Dimension = dimension;
+        this.Dimension = dimension;
     }
 
-    Board(int Dimension) {
+    public Board(int Dimension) {
         this.Dimension = Dimension;
-
+        this.cells = new ArrayList<>();
         for(int i=0;i<Dimension;i++) {
-            cells.add(new ArrayList<>());
-            for(int j=0;i<Dimension;j++) {
-                cells.get(i).add(new Cell(i,j,null));
+            cells.add(new ArrayList<Cell>());
+        }
+        for(int i=0;i<Dimension;i++) {
+            for(int j=0;j<Dimension;j++) {
+                cells.get(i).add(new Cell());
             }
         }
 

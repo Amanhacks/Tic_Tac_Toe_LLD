@@ -1,8 +1,7 @@
-package com.example.tictactoe.Module;
+package com.example.tictactoe.Model;
 
 import com.example.tictactoe.WinningStrategy.WinningStrategy;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +13,21 @@ public class Game {
     private int lastIndexPlayer=0;
     private Player winner;
     private int dimension;
-    private GameStatus gameStatus;
+    private GameStatus gameStatus = GameStatus.NOT_STARTED;
 
-    private Game(GameStatus gameStatus) {
+    private Game() {
         this.gameStatus = GameStatus.IN_PROGRESS;
         this.players = new ArrayList<>();
         this.winningStrategies = new ArrayList<>();
         this.moves = new ArrayList<>();
     }
 
-    public static Builder getBuilder() {
+    public static Builder create() {
+
         return new Builder();
     }
 
-    static class Builder {
+    public static class Builder {
 
         private List<Player> players;
         private int lastIndexPlayer=0;
@@ -46,7 +46,7 @@ public class Game {
         }
 
         public Builder setPlayers(List<Player> players) {
-            this.players = players;
+            this.players.addAll(players);
             return this;
         }
 
@@ -73,18 +73,26 @@ public class Game {
             return this;
         }
 
-        public Builder setWinningStrategy(WinningStrategy winningStrategy) {
-            winningStrategies.add(winningStrategy);
+        public Builder setWinningStrategy(List<WinningStrategy> winningStrategies) {
+            this.winningStrategies.addAll(winningStrategies);
             return this;
         }
 
         public Game Built() {
-            Game game = new Game(GameStatus.NOT_STARTED);
-            game.lastIndexPlayer = this.lastIndexPlayer;
-            game.board = new Board(this.dimension);
-            game.dimension = dimension;
-            game.players = this.players;
-            game.winningStrategies = this.winningStrategies;
+
+            Game game = null;
+            try{
+                game = new Game();
+                game.board = new Board(dimension);
+                game.dimension = dimension;
+                game.players.addAll(this.players);
+                game.winningStrategies.addAll(this.winningStrategies);
+            }
+            catch(Exception ex) {
+                System.out.println("Not able to create game in builder class");
+                System.out.println(ex.getStackTrace());
+            }
+
             return game;
         }
 
@@ -95,7 +103,7 @@ public class Game {
         if(move != null) {
             moves.add(move);
             this.board.updateMove(move);
-
+            System.out.println(" Did anyone won??  "+ checkIfWon());
             if (!checkIfWon()) {
                 lastIndexPlayer = (lastIndexPlayer + 1) % players.size();
             }
@@ -108,11 +116,12 @@ public class Game {
 
     public boolean checkIfWon() {
         boolean inWon = false;
+        System.out.println("winning strategies" + winningStrategies.size());
         for(WinningStrategy winningStrategy : winningStrategies ) {
             if(winningStrategy.checkIfWon(players.get(lastIndexPlayer),this.board, moves.get(moves.size()-1))) {
                 System.out.println("Player : "+players.get(lastIndexPlayer).getName() + " won the game!!" );
-                gameStatus = GameStatus.WIN;
-                winner = players.get(lastIndexPlayer);
+                this.gameStatus = GameStatus.WIN;
+                this.winner = players.get(lastIndexPlayer);
                 return true;
             }
         }
@@ -136,5 +145,9 @@ public class Game {
             }
             System.out.println();
         }
+    }
+
+    public GameStatus getGameStatus() {
+        return this.gameStatus;
     }
 }

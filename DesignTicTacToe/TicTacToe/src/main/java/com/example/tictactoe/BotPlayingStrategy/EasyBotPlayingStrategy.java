@@ -1,9 +1,9 @@
 package com.example.tictactoe.BotPlayingStrategy;
 
-import com.example.tictactoe.Module.Board;
-import com.example.tictactoe.Module.Cell;
-import com.example.tictactoe.Module.Move;
-import com.example.tictactoe.Module.Player;
+import com.example.tictactoe.Model.Board;
+import com.example.tictactoe.Model.Cell;
+import com.example.tictactoe.Model.Move;
+import com.example.tictactoe.Model.Player;
 
 import java.util.List;
 
@@ -15,7 +15,11 @@ public class EasyBotPlayingStrategy implements BotPlayingStrategy {
         for(int i=0;i<board.getDimension();i++) {
             for(int j=0;j<board.getDimension();j++) {
                 if(cells.get(i).get(j).getSymbol() == null) {
-                    return new Move(player,new Cell(i,j,player.getSymbol()));
+                    Cell cell = new Cell();
+                    cell.setRow(i);
+                    cell.setCol(j);
+                    cell.setSymbol(player.getSymbol());
+                    return new Move(player,cell);
                 }
             }
         }
